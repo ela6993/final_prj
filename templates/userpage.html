@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userpage.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h2>Your Page</h2>
+        <a class = 'logout' href="{{ url_for('logout') }}">Log out</a>
+    </header>
+    <div class = 'info'>
+        <div class = 'names'>
+            <h3 class = 'username'>{{ current_user.username }}</h3>
+            <h3>{{ current_user.name }}</h3>
+        </div>
+    </div>
+    <div class = 'buttonarea'>
+        <a class = 'others' href="/others">Other Users</a><br>
+    </div>
+</body>
+</html>

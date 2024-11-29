@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/users.css') }}">
+    <title>Document</title>
+</head>
+<body>
+        <h2>Users</h2>
+        <div class = 'main_container'>
+            <ul>
+            {% for i in users %}
+            <li><a href="{{ url_for('user', id = i.user_id) }}">{{ i.username }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div class = 'main_container'>
+        <div id = 'messages'></div>
+        <form id = 'messageForm'>
+            <input type="text" id = 'message' placeholder="Write your message" required>
+            <button type = 'submit'>Send</button>
+        </form>
+    </div>
+
+    <script>
+        const chatId = '{{ id }}'
+        const userName = '{{ current_user.username }}'
+    </script>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.emit('join', {chat_id: chatId})
+
+        socket.on('message', function(data) {
+            var messageContainer = document.getElementById('messages')
+            console.log(data)
+            messageContainer.innerHTML += '<p><strong>' + data.username + ': </strong>' + data.msg + '</p>'
+        })
+
+        document.getElementById('messageForm').onsubmit = function(e){
+            e.preventDefault()
+            var message = document.getElementById('message').value
+
+            socket.emit('send_message', {
+                'username': userName,
+                'message': message,
+                'chatid': chatId
+            })
+
+            document.getElementById('message').value = ''
+        }
+
+    </script>
+</body>
+</html>

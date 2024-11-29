@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h2>{{ user.username }}</h2>
+    </header>
+
+    <div class = 'info'>
+        <div class = 'image_block'>
+        </div>
+        <div class = 'names'>
+            <h3 class = 'username'>{{ user.username }}</h3>
+            <h3>{{ user.name }}</h3>
+        </div>
+    </div>
+    <div class = 'buttonarea'>
+        <a class = 'chat_button' href="{{ url_for('chat', id = room_id, user = user.username) }}">Chat</a>
+    </div>
+</body>
+</html>
