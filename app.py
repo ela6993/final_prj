@@ -14,8 +14,6 @@ socketio = SocketIO()
 def create_app():
     app = Flask(__name__, template_folder='templates')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./appdb.db'
-    upload_folder = 'uploads'
-    app.config['UPLOAD_FOLDER'] = upload_folder
     app.secret_key = 'mysecretkey'
 
     bcrypt.init_app(app)

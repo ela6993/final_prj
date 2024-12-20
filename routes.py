@@ -83,8 +83,7 @@ def register_routes(app, bcrypt, db, socketio):
 
         for i in history_messages:
             socketio.emit('message', {'username': i.username, 'msg': i.message_content}, to = request.sid)
-            print(type(i))
-
+  
     @socketio.on('send_message')
     def handle_message(data):
         username = data['username']
